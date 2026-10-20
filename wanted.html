@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123f36">
+  <meta name="description" content="Browse and post requests for free items.">
+  <title>I Need This — requests | Zero Dollar Store</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="wanted">
+  <div class="announcement">NO PRICES. NO PAID SHIPPING. NO HIDDEN FEES. <span>EVERYTHING IS $0.</span></div>
+  <header class="header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="Zero Dollar Store home"><span class="brand-emblem" aria-hidden="true">$0</span><span class="brand-name">ZERO <strong>DOLLAR</strong> STORE</span></a>
+      <nav class="nav" aria-label="Main navigation"><a href="browse.html">Browse $0 items</a><a href="wanted.html">I Need This</a><a href="how-it-works.html">How it works</a><a href="points.html">Points</a><a href="safety.html">Safety</a><a href="about.html">About</a></nav>
+      <div class="header-actions"><button class="btn btn-ghost" id="loginTop">Log in</button><button class="btn btn-ghost" id="adminBell" type="button" hidden title="Administrator reviews">🛡️ Admin <span id="adminPendingCount">0</span></button><button class="btn" id="postTop">＋ List for $0</button><button class="mobile-menu" aria-label="Open navigation" id="mobileMenu">☰</button></div>
+    </div>
+  </header>
+<main id="top">
+<div class="container page-intro"><p class="kicker">NEED SOMETHING?</p><h1>I Need This</h1><p>Post something you're looking for. Other members can offer it free, or arrange a voluntary exchange without money or fees.</p></div>
+    <section id="wanted" class="container wanted-callout"><div><h2>🔎 I Need This / I Want This</h2><p>Looking for something? Post what you need. Someone who has it can message you to arrange free pickup, free delivery, or a voluntary exchange. No money or fees. Requests need admin approval.</p></div><div class="wanted-actions"><button type="button" class="btn btn-ghost" id="wantedBrowse">Browse requests</button><button type="button" class="btn" id="wantedPost">＋ I want this</button></div></section>
+<div class="search-shell"><div class="container"><form id="searchForm" class="search-bar">
+      <label class="search-control"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.2"/><path d="m16.3 16.3 5 5"/></svg><input id="searchText" placeholder="What are you looking for? Try 'sofa', 'bike'..." aria-label="Search $0 listings"></label>
+      <label class="search-control"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><input id="searchArea" placeholder="Suburb or postcode" aria-label="Search suburb" value=""></label>
+      <button type="submit" class="btn">Find free things →</button>
+    </form><div class="trust-row"><span>💸 Every price is $0</span><span class="dot"></span><span>📍 Find things near you</span><span class="dot"></span><span>📦 Free pickup or arrangements — no fees</span></div></div></div>
+    <section class="section container" id="categories"><div class="section-title-row"><div><p class="kicker">Find what you need</p><h2 class="section-title">Browse by category</h2></div><span class="muted">No sellers. No buyers. Just free stuff.</span></div><div class="categories" id="categoryGrid"></div></section>
+<section class="section container browse" id="browse"><div class="browse-head"><div><p class="kicker">THE FREE STUFF MARKETPLACE</p><div class="browse-title-area"><h2 class="section-title" id="browseHeading">Recently listed — all $0</h2><span id="resultCount" class="result-count"></span></div></div><select class="sort" id="sortBy" aria-label="Sort listings"><option value="recent">Newest first</option><option value="alpha">A to Z</option></select></div><div class="listing-view-tabs" role="group" aria-label="Free items or wanted requests"><button type="button" data-listing-view="have" aria-pressed="true">🎁 I have this — free items</button><button type="button" data-listing-view="want" aria-pressed="false">🔎 I want this — requests</button></div><div class="items-grid" id="itemsGrid"></div><div class="more-wrap"><button class="btn btn-soft" id="resetButton">Show all free items →</button></div></section>
+</main>
+
+  <footer class="footer"><div class="container footer-row"><div><a class="brand" href="index.html"><span class="brand-emblem" aria-hidden="true">$0</span><span class="brand-name">ZERO <strong>DOLLAR</strong> STORE</span></a><p>Everything costs $0. The online marketplace where useful things get a second life.</p></div><div class="footer-nav"><a href="browse.html">Browse $0 items</a><a href="wanted.html">Wanted requests</a><a href="how-it-works.html">How it works</a><a href="safety.html">Safety rules</a><a href="points.html">Points</a><a href="about.html">About</a><a href="newsletter.html">Newsletter</a><a href="#" id="footerSignIn">Member sign in</a></div></div><div class="container footer-operator">Operated by <a href="https://GroundSupportCrew.com" target="_blank" rel="noopener noreferrer">GroundSupportCrew.com</a>.</div></footer>
+  <div class="overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Dialog"><div class="modal" id="modalBody"></div></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="assets/app.js"></script>
+</body>
+</html>
