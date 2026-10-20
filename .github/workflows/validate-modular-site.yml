@@ -1,0 +1,53 @@
+name: Validate modular Zero Dollar Store
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate module JavaScript syntax
+        run: node --input-type=module --check < assets/app.js
+      - name: Validate standalone pages, CSS and local links
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          pages = ["index.html", "browse.html", "wanted.html", "how-it-works.html",
+                   "safety.html", "points.html", "about.html", "newsletter.html", "admin.html"]
+          class Inspector(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.links = []
+                  self.scripts = []
+                  self.styles = []
+                  self.inline_styles = []
+                  self.inline_scripts = 0
+              def handle_starttag(self, tag, attrs):
+                  values = dict(attrs)
+                  if tag == "a" and values.get("href"):
+                      self.links.append(values["href"])
+                  if tag == "script":
+                      self.scripts.append(values.get("src"))
+                      self.inline_scripts += int(not values.get("src"))
+                  if tag == "link" and values.get("rel") == "stylesheet":
+                      self.styles.append(values.get("href"))
+                  if "style" in values:
+                      self.inline_styles.append(values["style"])
+          for page in pages:
+              html = Path(page).read_text(encoding="utf-8")
+              parser = Inspector()
+              parser.feed(html)
+              assert parser.inline_scripts == 0, f"{page} has inline JS"
+              assert "<style" not in html, f"{page} has inline CSS"
+              assert not parser.inline_styles, f"{page} has inline style attributes"
+              assert "assets/styles.css" in parser.styles, f"{page} missing stylesheet"
+              assert "assets/app.js" in parser.scripts, f"{page} missing shared JS"
+              for link in parser.links:
+                  if link.endswith(".html"):
+                      assert Path(link).is_file(), f"{page} links to nonexistent {link}"
+          print(f"Validated {len(pages)} modular HTML pages and shared assets")
+          PY
