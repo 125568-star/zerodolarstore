@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123f36">
+  <meta name="description" content="Administrator review tools for Zero Dollar Store.">
+  <title>Admin controls | Zero Dollar Store</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="admin">
+  <div class="announcement">NO PRICES. NO PAID SHIPPING. NO HIDDEN FEES. <span>EVERYTHING IS $0.</span></div>
+  <header class="header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="Zero Dollar Store home"><span class="brand-emblem" aria-hidden="true">$0</span><span class="brand-name">ZERO <strong>DOLLAR</strong> STORE</span></a>
+      <nav class="nav" aria-label="Main navigation"><a href="browse.html">Browse $0 items</a><a href="wanted.html">I Need This</a><a href="how-it-works.html">How it works</a><a href="points.html">Points</a><a href="safety.html">Safety</a><a href="about.html">About</a></nav>
+      <div class="header-actions"><button class="btn btn-ghost" id="loginTop">Log in</button><button class="btn btn-ghost" id="adminBell" type="button" hidden title="Administrator reviews">🛡️ Admin <span id="adminPendingCount">0</span></button><button class="btn" id="postTop">＋ List for $0</button><button class="mobile-menu" aria-label="Open navigation" id="mobileMenu">☰</button></div>
+    </div>
+  </header>
+<main id="top">
+<div class="container page-intro"><p class="kicker">STORE MANAGEMENT</p><h1>Administrator controls</h1><p>Sign in with an authorised administrator account to review pending listings, reports and account bans.</p></div>
+<section class="container page-content"><div class="page-note">Only authorised administrators can access moderation functions. Use the <strong>Log in</strong> button above if you are not signed in.</div></section>
+</main>
+  <section class="container admin-workspace" id="adminWorkspace" hidden aria-label="Administrator controls"><h2>🛡️ Administrator controls</h2><p id="adminWorkspaceIdentity"></p><button class="btn" id="adminWorkspaceButton" type="button">Review listings, requests, bans and reports →</button></section>
+  <footer class="footer"><div class="container footer-row"><div><a class="brand" href="index.html"><span class="brand-emblem" aria-hidden="true">$0</span><span class="brand-name">ZERO <strong>DOLLAR</strong> STORE</span></a><p>Everything costs $0. The online marketplace where useful things get a second life.</p></div><div class="footer-nav"><a href="browse.html">Browse $0 items</a><a href="wanted.html">Wanted requests</a><a href="how-it-works.html">How it works</a><a href="safety.html">Safety rules</a><a href="points.html">Points</a><a href="about.html">About</a><a href="newsletter.html">Newsletter</a><a href="#" id="footerSignIn">Member sign in</a></div></div><div class="container footer-operator">Operated by <a href="https://GroundSupportCrew.com" target="_blank" rel="noopener noreferrer">GroundSupportCrew.com</a>.</div></footer>
+  <div class="overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Dialog"><div class="modal" id="modalBody"></div></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="assets/app.js"></script>
+</body>
+</html>
