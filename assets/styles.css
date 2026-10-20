@@ -188,3 +188,5 @@
 .footer-nav a:hover{text-decoration:underline}
 @media(max-width:860px){.page-card-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.page-intro{padding:35px 0 16px}.page-card-grid,.page-safety-list{grid-template-columns:1fr}.page-card{padding:20px}}
+
+.newsletter .newsletter-kicker{color:#c9ed83;margin-bottom:12px}
