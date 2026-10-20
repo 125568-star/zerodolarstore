@@ -170,7 +170,7 @@
 .page-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
 .page-content{padding:12px 0 62px}
 .page-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:25px 0 40px}
-.page-card{border:1px solid var(--line);background:white;padding:26px;border-radius:16px;box-shadow:var(--shadow);display:block}
+.page-card{border:1px solid var(--line);background:white;padding:26px;border-radius:16px;box-shadow:var(--shadow);display:block;text-align:center}
 .page-card:hover{border-color:#9ac8ae}
 .page-card .step-icon{margin-bottom:12px}
 .page-card h3{font-size:18px;margin:0 0 8px;color:var(--ink)}
