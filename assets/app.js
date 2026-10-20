@@ -9,7 +9,7 @@ const q = (id) => document.getElementById(id);
 const esc = (s='')=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const safe = (s='')=>String(s??'').trim();
 const moneyRe = /(?:\$\s*\d|\b(?:payment|price\s*[:=]|deposit|paypal|bank transfer|postage fee|delivery fee|shipping fee|cash only|handling fee|venmo|payid)\b)/i;
-const categoryIcons = {'furniture':'🛋️','electronics':'💻','home-appliances':'🏠','garden':'🌿','tools':'🧰','sports':'🚲','books':'📚','clothing':'👕','baby-kids':'🧸','pets':'🐶','building-materials':'🪚','other':'🎁','events':'🎉','services-offered':'🤝'};
+const categoryIcons = {'furniture':'🛋️','electronics':'💻','home-appliances':'🏠','garden':'🌿','tools':'🧰','sports':'🚲','books':'📚','clothing':'👕','baby-kids':'🧸','pets':'🐶','building-materials':'🪚','other':'🎁','events':'📅','services-offered':'🛠️'};
 const categoryColors=['#edf2e5','#e8eefe','#fff2e4','#e9f3e5','#fff0e5','#e5f5f7'];
 let adminAccess=false, accountBanned=false, adminSeenNotices=null, adminChecking=false, currentEmailDraft=null, listingView=document.body.dataset.page==='wanted'?'want':'have', identitySerial=0;
 let pendingApprovalEmailLink=(new URLSearchParams(location.search)).get('review')==='pending';
