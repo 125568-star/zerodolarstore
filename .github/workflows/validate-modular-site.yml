@@ -31,10 +31,10 @@ jobs:
                   if tag == "a" and values.get("href"):
                       self.links.append(values["href"])
                   if tag == "script":
-                      self.scripts.append(values.get("src"))
+                      self.scripts.append((values.get("src") or "").split("?", 1)[0].split("#", 1)[0])
                       self.inline_scripts += int(not values.get("src"))
                   if tag == "link" and values.get("rel") == "stylesheet":
-                      self.styles.append(values.get("href"))
+                      self.styles.append((values.get("href") or "").split("?", 1)[0].split("#", 1)[0])
                   if "style" in values:
                       self.inline_styles.append(values["style"])
           for page in pages:
