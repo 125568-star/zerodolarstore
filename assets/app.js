@@ -186,7 +186,7 @@ function showItem(id){
  '<p class="sub">📍 '+esc(l.suburb)+', '+esc(l.state)+' · '+esc(categoryName(l.category_id))+'</p>'+
  '<div class="photos-row">'+(photos||'<div style="font-size:70px">'+categoryEmoji(l.category_id)+'</div>')+'</div>'+
  '<p class="listing-description" style="white-space:pre-wrap">'+linkifyText(l.description||'No details provided')+'</p>'+
- '<p class="modal-note">Arrangements may include pickup or free delivery; wanted requests can also offer a voluntary exchange. No payments, postage charges or deposits.</p>'+
+ (isEvent?'':'<p class="modal-note">Arrangements may include pickup or free delivery; wanted requests can also offer a voluntary exchange. No payments, postage charges or deposits.</p>')+
  actions+adminDelete,true);
 }
 async function setStatus(id,status){const {error}=await db.from('listings').update({status}).eq('id',id).eq('owner_id',currentUser().id);if(error)throw error;closeModal();toast('Listing status updated.');await fetchListings()}
