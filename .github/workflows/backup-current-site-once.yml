@@ -1,0 +1,31 @@
+name: Create Zero Dollar Store backup ZIP
+on:
+  push:
+    paths:
+      - '.github/workflows/backup-current-site-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Package website snapshot
+        shell: bash
+        run: |
+          mkdir -p backups
+          git archive --format=zip --output=backups/zero-dollar-store-2026-10-21.zip 50db023a8692624d60f0a524b39e10ea89b0d0fb
+          unzip -t backups/zero-dollar-store-2026-10-21.zip
+          echo "Website ZIP copied from commit 50db023a8692624d60f0a524b39e10ea89b0d0fb; live Supabase data and private configuration are not in the repository ZIP." > backups/BACKUP-SCOPE-2026-10-21.txt
+      - name: Commit backup ZIP
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backups/zero-dollar-store-2026-10-21.zip backups/BACKUP-SCOPE-2026-10-21.txt
+          git commit -m "Store Zero Dollar Store 2026-10-21 website backup ZIP"
+          git push
