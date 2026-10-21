@@ -196,3 +196,19 @@
 .modal .newsletter-choice label{display:flex;align-items:flex-start;gap:10px;white-space:normal;line-height:1.5;margin:0;min-width:0}
 .modal .newsletter-choice label input[type="checkbox"]{flex:0 0 auto;margin:2px 0 0}
 .modal .newsletter-choice [data-action="saveNewsletter"]{position:static;display:inline-flex;align-self:flex-start;margin:0;max-width:100%;white-space:normal;text-align:center}
+
+/* URLs written in listings must look and behave like links, despite the global a reset. */
+.modal .listing-description a.listing-external-link,
+.modal .listing-description a.listing-external-link:visited {
+  color:#155bc4;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  cursor:pointer;
+}
+.modal .listing-description a.listing-external-link:hover,
+.modal .listing-description a.listing-external-link:focus-visible {
+  color:#003f94;
+  text-decoration-thickness:2px;
+}
