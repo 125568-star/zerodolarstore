@@ -8,6 +8,28 @@ const BUCKET = 'zds-listing-images';
 const q = (id) => document.getElementById(id);
 const esc = (s='')=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const safe = (s='')=>String(s??'').trim();
+// Turn plain HTTP(S) addresses into safe clickable links without interpreting listing HTML.
+function linkifyText(value=''){
+ const source=String(value??'');
+ const urlPattern=/https?:\/\/[^\s<>"']+/gi;
+ let output='',cursor=0,match;
+ while((match=urlPattern.exec(source))!==null){
+  const raw=match[0], url=raw.replace(/[.,;:!?]+$|[)\]]+$/g,'');
+  output+=esc(source.slice(cursor,match.index));
+  if(url){
+   try{
+    const parsed=new URL(url);
+    if(parsed.protocol==='http:'||parsed.protocol==='https:'){
+     output+='<a href="'+esc(parsed.href)+'" target="_blank" rel="noopener noreferrer">'+esc(url)+'</a>';
+    }else output+=esc(url);
+   }catch(_error){output+=esc(url)}
+  }
+  output+=esc(raw.slice(url.length));
+  cursor=match.index+raw.length;
+ }
+ return output+esc(source.slice(cursor));
+}
+
 const moneyRe = /(?:\$\s*\d|\b(?:payment|price\s*[:=]|deposit|paypal|bank transfer|postage fee|delivery fee|shipping fee|cash only|handling fee|venmo|payid)\b)/i;
 const categoryIcons = {'furniture':'🛋️','electronics':'💻','home-appliances':'🏠','garden':'🌿','tools':'🧰','sports':'🚲','books':'📚','clothing':'👕','baby-kids':'🧸','pets':'🐶','building-materials':'🪚','other':'🎁','events':'📅','services-offered':'🛠️'};
 const categoryColors=['#edf2e5','#e8eefe','#fff2e4','#e9f3e5','#fff0e5','#e5f5f7'];
@@ -157,7 +179,7 @@ function showItem(id){
  openModal('<h2>'+esc(l.title)+'</h2><p class="sub"><strong>'+(want?'🔎 I WANT THIS':'🎁 I HAVE THIS')+'</strong> · '+(want?'Free request / voluntary exchange':'Free giveaway, $0')+'</p>'+
  '<p class="sub">📍 '+esc(l.suburb)+', '+esc(l.state)+' · '+esc(categoryName(l.category_id))+'</p>'+
  '<div class="photos-row">'+(photos||'<div style="font-size:70px">'+categoryEmoji(l.category_id)+'</div>')+'</div>'+
- '<p style="white-space:pre-wrap">'+esc(l.description||'No details provided')+'</p>'+
+ '<p style="white-space:pre-wrap">'+linkifyText(l.description||'No details provided')+'</p>'+
  '<p class="modal-note">Arrangements may include pickup or free delivery; wanted requests can also offer a voluntary exchange. No payments, postage charges or deposits.</p>'+
  actions+adminDelete,true);
 }
