@@ -148,9 +148,10 @@ async function saveListing(form){const u=currentUser();if(!u)return showAuth();c
 function showItem(id){
  const l=listings.find(x=>x.id===id);if(!l)return;
  const mine=l.owner_id===currentUser()?.id,want=l.listing_type==='want';
+ const isEvent=categories.find(x=>String(x.id)===String(l.category_id))?.slug==='events';
  const photos=(imagesByListing[id]||[]).map(x=>'<img src="'+esc(photoUrl(x))+'" alt="Photo of '+esc(l.title)+'">').join('');
  const actions=mine
-   ?'<div class="admin-actions"><button class="btn btn-soft" data-edit-listing="'+l.id+'">✏️ Edit / send for approval</button><button class="btn" data-status="reserved" data-id="'+l.id+'">Mark '+(want?'arranging':'reserved')+'</button><button class="btn" data-status="collected" data-id="'+l.id+'">Mark '+(want?'fulfilled':'collected')+'</button><button class="btn btn-ghost" data-status="removed" data-id="'+l.id+'">Remove my post</button></div>'
+   ?'<div class="admin-actions"><button class="btn btn-soft" data-edit-listing="'+l.id+'">✏️ Edit / send for approval</button>'+(isEvent?'':'<button class="btn" data-status="reserved" data-id="'+l.id+'">Mark '+(want?'arranging':'reserved')+'</button><button class="btn" data-status="collected" data-id="'+l.id+'">Mark '+(want?'fulfilled':'collected')+'</button>')+'<button class="btn btn-ghost" data-status="removed" data-id="'+l.id+'">Remove my post</button></div>'
    :'<button class="btn full" data-contact="'+l.id+'">'+(want?'I can help — message requester →':'I want this — message owner →')+'</button><button class="btn btn-ghost full" data-report="'+l.id+'" style="margin-top:8px">Report listing</button>';
  const adminDelete=adminAccess?'<div class="admin-actions"><button class="admin-card-delete" data-admin-delete="'+l.id+'">🗑 Delete listing (admin)</button></div>':'';
  openModal('<h2>'+esc(l.title)+'</h2><p class="sub"><strong>'+(want?'🔎 I WANT THIS':'🎁 I HAVE THIS')+'</strong> · '+(want?'Free request / voluntary exchange':'Free giveaway, $0')+'</p>'+
