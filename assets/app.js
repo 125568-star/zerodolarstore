@@ -182,7 +182,7 @@ function showItem(id){
    ?'<div class="admin-actions"><button class="btn btn-soft" data-edit-listing="'+l.id+'">✏️ Edit / send for approval</button>'+(isEvent?'':'<button class="btn" data-status="reserved" data-id="'+l.id+'">Mark '+(want?'arranging':'reserved')+'</button><button class="btn" data-status="collected" data-id="'+l.id+'">Mark '+(want?'fulfilled':'collected')+'</button>')+'<button class="btn btn-ghost" data-status="removed" data-id="'+l.id+'">Remove my post</button></div>'
    :'<button class="btn full" data-contact="'+l.id+'">'+(want?'I can help — message requester →':'I want this — message owner →')+'</button><button class="btn btn-ghost full" data-report="'+l.id+'" style="margin-top:8px">Report listing</button>';
  const adminDelete=adminAccess?'<div class="admin-actions"><button class="admin-card-delete" data-admin-delete="'+l.id+'">🗑 Delete listing (admin)</button></div>':'';
- openModal('<h2>'+esc(l.title)+'</h2><p class="sub"><strong>'+(want?'🔎 I WANT THIS':'🎁 I HAVE THIS')+'</strong> · '+(want?'Free request / voluntary exchange':'Free giveaway, $0')+'</p>'+
+ openModal('<h2>'+esc(l.title)+'</h2><p class="sub"><strong>'+(isEvent?'📅 FREE EVENT':want?'🔎 I WANT THIS':'🎁 I HAVE THIS')+'</strong> · '+(isEvent?'Free event, $0':want?'Free request / voluntary exchange':'Free giveaway, $0')+'</p>'+
  '<p class="sub">📍 '+esc(l.suburb)+', '+esc(l.state)+' · '+esc(categoryName(l.category_id))+'</p>'+
  '<div class="photos-row">'+(photos||'<div style="font-size:70px">'+categoryEmoji(l.category_id)+'</div>')+'</div>'+
  '<p class="listing-description" style="white-space:pre-wrap">'+linkifyText(l.description||'No details provided')+'</p>'+
