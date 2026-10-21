@@ -11,16 +11,16 @@ const safe = (s='')=>String(s??'').trim();
 // Turn plain HTTP(S) addresses into safe clickable links without interpreting listing HTML.
 function linkifyText(value=''){
  const source=String(value??'');
- const urlPattern=/https?:\/\/[^\s<>"']+/gi;
+ const urlPattern=/(?:https?:\/\/|www\.)[^\s<>"']+/gi;
  let output='',cursor=0,match;
  while((match=urlPattern.exec(source))!==null){
-  const raw=match[0], url=raw.replace(/[.,;:!?]+$|[)\]]+$/g,'');
+  const raw=match[0], url=raw.replace(/[.,;:!?)\]]+$/g,'');
   output+=esc(source.slice(cursor,match.index));
   if(url){
    try{
-    const parsed=new URL(url);
+    const parsed=new URL(/^www\./i.test(url)?'https://'+url:url);
     if(parsed.protocol==='http:'||parsed.protocol==='https:'){
-     output+='<a href="'+esc(parsed.href)+'" target="_blank" rel="noopener noreferrer">'+esc(url)+'</a>';
+     output+='<a class="listing-external-link" href="'+esc(parsed.href)+'" target="_blank" rel="noopener noreferrer" title="Open external website">'+esc(url)+'</a>';
     }else output+=esc(url);
    }catch(_error){output+=esc(url)}
   }
@@ -185,7 +185,7 @@ function showItem(id){
  openModal('<h2>'+esc(l.title)+'</h2><p class="sub"><strong>'+(want?'🔎 I WANT THIS':'🎁 I HAVE THIS')+'</strong> · '+(want?'Free request / voluntary exchange':'Free giveaway, $0')+'</p>'+
  '<p class="sub">📍 '+esc(l.suburb)+', '+esc(l.state)+' · '+esc(categoryName(l.category_id))+'</p>'+
  '<div class="photos-row">'+(photos||'<div style="font-size:70px">'+categoryEmoji(l.category_id)+'</div>')+'</div>'+
- '<p style="white-space:pre-wrap">'+linkifyText(l.description||'No details provided')+'</p>'+
+ '<p class="listing-description" style="white-space:pre-wrap">'+linkifyText(l.description||'No details provided')+'</p>'+
  '<p class="modal-note">Arrangements may include pickup or free delivery; wanted requests can also offer a voluntary exchange. No payments, postage charges or deposits.</p>'+
  actions+adminDelete,true);
 }
