@@ -127,8 +127,6 @@
 .email-preview{background:#f3f7f5;border-radius:8px;padding:12px;white-space:pre-wrap;font-size:12px;line-height:1.55;max-height:250px;overflow:auto}
 @media(max-width:630px){#adminBell{padding:9px 8px;font-size:11px}}
 
-    .empty-store-quip{font-size:13px;line-height:1.55;font-weight:650;color:#245944;background:rgba(255,255,255,.78);border-left:3px solid #43a876;border-radius:0 9px 9px 0;padding:10px 13px;max-width:590px;margin:0 0 17px}
-    @media(max-width:630px){.empty-store-quip{font-size:12px;padding:9px 11px;margin-bottom:15px}}
 
   #loginTop.admin-user{background:#e7f6e9;color:#205638;border-color:#bddac5}
   .admin-workspace{background:#f0faf3;border:1px solid #d1ead8;padding:18px 22px;border-radius:15px;margin:28px auto}
