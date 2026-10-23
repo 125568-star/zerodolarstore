@@ -18,7 +18,6 @@ A Brisbane-supported Australian marketplace for free ($0) items and local pickup
 | [assets/styles.css](assets/styles.css) | Shared website CSS (colours, layout, fonts, responsive design) |
 | [assets/app.js](assets/app.js) | Shared browser JavaScript (Supabase, listings, account, messaging, reviews) |
 | [.nojekyll](.nojekyll) | GitHub Pages static-site setting |
-| [.github/workflows/validate-modular-site.yml](.github/workflows/validate-modular-site.yml) | Checks JavaScript syntax and that modular pages link correctly |
 
 ## How to edit
 
@@ -29,11 +28,11 @@ A Brisbane-supported Australian marketplace for free ($0) items and local pickup
 
 Edit an HTML file to change that page's words/content. Edit `assets/styles.css` for site-wide styling; edit `assets/app.js` for shared behaviour. Keep the code out of `index.html` unless it belongs to the homepage.
 
-**Repository:** https://github.com/125568-star/zerodolarstore
+**Repository:** https://github.com/125568-star/zerodollarstore
 
 **Website (before custom DNS setup):** https://125568-star.github.io/zerodolarstore/
 
-**Future domain:** https://zerodollarstore.com (after the domain is pointed to GitHub Pages and configured)
+**Custom domain (recorded in `CNAME`):** https://zerodollarstore.com
 
 ## Backend
 
