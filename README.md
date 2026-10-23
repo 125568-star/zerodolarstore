@@ -30,7 +30,7 @@ Edit an HTML file to change that page's words/content. Edit `assets/styles.css` 
 
 **Repository:** https://github.com/125568-star/zerodollarstore
 
-**Website (before custom DNS setup):** https://125568-star.github.io/zerodolarstore/
+**GitHub Pages project address:** https://125568-star.github.io/zerodollarstore/
 
 **Custom domain (recorded in `CNAME`):** https://zerodollarstore.com
 
